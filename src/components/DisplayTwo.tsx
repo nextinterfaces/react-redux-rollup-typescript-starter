@@ -5,9 +5,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Context from '../store/Context'
 import {StoreKey} from '../store/StoreKey'
 
-
-declare const window: any
-
 @Context
 export class DisplayTwo extends React.Component<any> {
 

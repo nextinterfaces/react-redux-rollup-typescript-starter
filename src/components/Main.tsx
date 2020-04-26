@@ -7,7 +7,6 @@ import Context from '../store/Context'
 import {DisplayOne} from './DisplayOne'
 import {DisplayTwo} from './DisplayTwo'
 
-
 declare const window: any
 
 @Context

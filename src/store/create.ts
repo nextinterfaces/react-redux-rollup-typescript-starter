@@ -4,7 +4,6 @@ import reducers from './reducers'
 import {createBrowserHistory} from 'history'
 
 import {routerMiddleware} from 'react-router-redux'
-// import ReduxPromise = require('redux-promise');
 import ReduxPromise from 'redux-promise'
 
 const history = createBrowserHistory()

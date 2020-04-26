@@ -1,7 +1,6 @@
 import ActionTypes from './ActionTypes'
 import {Api} from '../../utils/Api'
 
-
 export default {
 
     doDisplayNotification(list) {
@@ -12,5 +11,4 @@ export default {
         let httpPromise = Api.http().get('' + ticketId)
         return {type: ActionTypes.CALL_API, payload: httpPromise}
     }
-
 }
