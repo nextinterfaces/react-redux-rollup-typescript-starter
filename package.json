@@ -3,7 +3,6 @@
   "name": "react-redux-rollup-typescript-starter",
   "version": "1.0.0",
   "author": "Atanas Roussev",
-  "license": "MIT",
   "scripts": {
     "dev": "rollup -c -w",
     "build": "rimraf public && cross-env NODE_ENV=production rollup -c",
