@@ -9,9 +9,9 @@ export class ReducerUtils {
     }
 
     static callApi(state, payload): any {
-        console.log('-- callApi payload', payload)
         return state.merge({
-            'CALL_API': Immutable.fromJS(payload.data)
+            'CALL_API': Immutable.fromJS(payload.data),
+            'ACTION_ONE': Immutable.fromJS(JSON.stringify(payload.data))
         })
     }
 

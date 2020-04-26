@@ -15,9 +15,7 @@ export class DisplayComponent extends React.Component<any> {
 
     render() {
         const {context} = this.props
-
         console.log('-- DisplayComponent', ' context:', context)
-
         return <div style={{textAlign: 'center'}}>
             {context.get(StoreKey.ACTION_ONE)}
         </div>

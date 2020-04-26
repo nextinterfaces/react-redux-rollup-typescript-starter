@@ -4,9 +4,8 @@ import '../../scss/main.scss'
 import {Button} from 'reactstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Context from '../store/Context'
-import {StoreKey} from '../store/StoreKey'
-import {Api} from '../utils/Api'
 import {DisplayComponent} from './DisplayComponent'
+import {Api} from '../utils/Api'
 
 
 declare const window: any
@@ -19,24 +18,23 @@ export class Main extends React.Component<any, any> {
     }
 
     buttonClicked = () => {
-        this.props.doActionOne(['hello', 'world'])
-        const payload = this.getApiData()
-        console.log('-- payload', payload)
+        this.props.doActionOne(['action-', 'one-', 'clicked'])
     }
 
-    getApiData = async () => {
+    getMockData = async () => {
         try {
-            return await Api.get('1')
+            const data = await Api.http().get('1')
+            this.props.doActionOne(JSON.stringify(data.data))
         } catch (e) {
-            console.log('Error: retrieving feed', e)
-            return []
+            console.log('Error:', e)
         }
     }
 
     getReduxData = async () => {
-        let apiPromise = this.props.doCallApi(Math.floor(Math.random() * Math.floor(5)))
+        let apiPromise = this.props.doCallApi('2')
         apiPromise.catch(err => {
-            console.log('-- ERROR while calling API:', err)
+            console.log('Error:', err)
+            this.props.doActionOne('' + err)
         })
     }
 
@@ -48,11 +46,11 @@ export class Main extends React.Component<any, any> {
         return <div style={{textAlign: 'center'}}>
             <br/>
             <h2>
-            Hello Main
+                Hello React / Redux / Rollup / Typescript
             </h2><br/>
             <Button color='primary' onClick={this.buttonClicked}>Click Action One</Button>
             <br/><br/>
-            <Button color='secondary' onClick={this.getApiData}>Click mock API</Button>
+            <Button color='secondary' onClick={this.getMockData}>Click mock API</Button>
             <br/><br/>
             <Button color='success' onClick={this.getReduxData}>Click Redux Promise</Button>
             <br/><br/>

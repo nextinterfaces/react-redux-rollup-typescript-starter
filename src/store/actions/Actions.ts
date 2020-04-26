@@ -9,12 +9,8 @@ export default {
     },
 
     doCallApi(ticketId) {
-        let httpPromise = Api.get('' + ticketId)
+        let httpPromise = Api.http().get('' + ticketId)
         return {type: ActionTypes.CALL_API, payload: httpPromise}
-    },
-
-    doOpenTab(tabName) {
-        return {type: ActionTypes.TAB_NAME, payload: tabName}
     }
 
 }
