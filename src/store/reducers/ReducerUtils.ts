@@ -2,16 +2,20 @@ import * as Immutable from 'immutable'
 
 export class ReducerUtils {
 
-    static actionOne(state, payload): any {
+    static displayNotification(state, payload): any {
         return state.merge({
-            'ACTION_ONE': Immutable.fromJS(payload)
+            'DISPLAY_NOTIFICATION': Immutable.fromJS(payload),
+            'DISPLAY_COMPONENT_1': Immutable.fromJS(true),
+            'DISPLAY_COMPONENT_2': Immutable.fromJS(false)
         })
     }
 
     static callApi(state, payload): any {
         return state.merge({
             'CALL_API': Immutable.fromJS(payload.data),
-            'ACTION_ONE': Immutable.fromJS(JSON.stringify(payload.data))
+            'DISPLAY_NOTIFICATION': Immutable.fromJS(JSON.stringify(payload.data)),
+            'DISPLAY_COMPONENT_1': Immutable.fromJS(false),
+            'DISPLAY_COMPONENT_2': Immutable.fromJS(true)
         })
     }
 

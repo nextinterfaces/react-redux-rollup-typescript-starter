@@ -1,4 +1,4 @@
 export class StoreKey {
-    static ACTION_ONE = 'ACTION_ONE'
+    static DISPLAY_NOTIFICATION = 'DISPLAY_NOTIFICATION'
     static CALL_API = 'CALL_API'
 }

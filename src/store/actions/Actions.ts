@@ -4,8 +4,8 @@ import {Api} from '../../utils/Api'
 
 export default {
 
-    doActionOne(list) {
-        return {type: ActionTypes.ACTION_ONE, payload: list}
+    doDisplayNotification(list) {
+        return {type: ActionTypes.DISPLAY_NOTIFICATION, payload: list}
     },
 
     doCallApi(ticketId) {

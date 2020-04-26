@@ -4,7 +4,7 @@ import {ReducerUtils as R} from './ReducerUtils'
 
 const initialStore = () => {
     const map_ = {}
-    for(let k of Object.keys(ActionTypes)) {
+    for (let k of Object.keys(ActionTypes)) {
         map_[k] = null
     }
     return map_
@@ -26,8 +26,8 @@ export default (state = DEFAULT_STATE, action: { type, payload, error? }) => {
     // Only success cases pass through
     switch (action.type) {
 
-        case ActionTypes.ACTION_ONE:
-            return R.actionOne(state, payload)
+        case ActionTypes.DISPLAY_NOTIFICATION:
+            return R.displayNotification(state, payload)
 
         case ActionTypes.CALL_API:
             return R.callApi(state, payload)

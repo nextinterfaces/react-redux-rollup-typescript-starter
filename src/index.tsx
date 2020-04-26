@@ -12,5 +12,5 @@ const reduxDebugger = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVT
 const store = BaseStore.create(reduxDebugger)
 
 ReactDOM.render(<Provider store={store}>
-    <Main store={store} history={BaseStore.history} />
+    <Main store={store} history={BaseStore.history}/>
 </Provider>, document.getElementById('app'))

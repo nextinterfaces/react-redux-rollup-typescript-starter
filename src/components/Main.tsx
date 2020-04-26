@@ -4,8 +4,8 @@ import '../../scss/main.scss'
 import {Button} from 'reactstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Context from '../store/Context'
-import {DisplayComponent} from './DisplayComponent'
-import {Api} from '../utils/Api'
+import {DisplayOne} from './DisplayOne'
+import {DisplayTwo} from './DisplayTwo'
 
 
 declare const window: any
@@ -18,61 +18,47 @@ export class Main extends React.Component<any, any> {
     }
 
     buttonClicked = () => {
-        this.props.doActionOne(['action-', 'one-', 'clicked'])
-    }
-
-    getMockData = async () => {
-        try {
-            const data = await Api.http().get('1')
-            this.props.doActionOne(JSON.stringify(data.data))
-        } catch (e) {
-            console.log('Error:', e)
-        }
+        this.props.doDisplayNotification(['action-', 'one-', 'clicked'])
     }
 
     getReduxData = async () => {
-        let apiPromise = this.props.doCallApi('2')
-        apiPromise.catch(err => {
-            console.log('Error:', err)
-            this.props.doActionOne('' + err)
-        })
+        this.props.doDisplayNotification(['start-', 'calling-', 'the-', 'api ...'])
+        // mimic latency
+        setTimeout(() => {
+            let apiPromise = this.props.doCallApi('2')
+            apiPromise.catch(err => {
+                console.log('Error:', err)
+                this.props.doDisplayNotification('' + err)
+            })
+        }, 500)
     }
 
     render() {
-        const {params, context} = this.props
-
-        console.log('-- props', this.props, ' context', context, ' params', params)
-
+        const {context} = this.props
+        const isComponentOne = context.get('DISPLAY_COMPONENT_1') === true
         return <div style={{textAlign: 'center'}}>
             <br/>
             <h2>
                 Hello React / Redux / Rollup / Typescript
-            </h2><br/>
-            <Button color='primary' onClick={this.buttonClicked}>Click Action One</Button>
+            </h2>
+            <hr/>
+            <Button color='primary' onClick={this.buttonClicked}>Show Redux</Button>
             <br/><br/>
-            <Button color='secondary' onClick={this.getMockData}>Click mock API</Button>
+            <Button color='success' onClick={this.getReduxData}>Show Redux API</Button>
             <br/><br/>
-            <Button color='success' onClick={this.getReduxData}>Click Redux Promise</Button>
-            <br/><br/>
-            <DisplayComponent {...this.props}/>
-        </div>
 
-        // const isNewsfeed = params.type === Constants.TYPE_NEWSFEED
-        // const isAd = params.type === Constants.TYPE_AD
-        //
-        // let readFeed = context.get(StoreKey.CALL_API)
-        // readFeed = !!readFeed ? readFeed.toJS() : null
-        //
-        // if (readFeed) {
-        //     return <NewsArticle {...this.props}/>
-        // }
-        //
-        // if (isNewsfeed) {
-        //     return <NewsTabList {...this.props}/>
-        //
-        // } else if (isAd) {
-        //     return <AdPage {...this.props}/>
-        // }
+            {isComponentOne &&
+            <h2>
+                <DisplayOne/>
+            </h2>
+            }
+
+            {!isComponentOne &&
+            <h2>
+                <DisplayTwo/>
+            </h2>
+            }
+        </div>
     }
 
 }

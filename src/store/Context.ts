@@ -23,25 +23,3 @@ export default (ComposeComponent) => {
         // 'as typeof' overcomes TS1238: Unable to resolve signature of class decorator when called as an expression.
     )(ComposeComponent) as typeof DefaultRootState
 }
-// const bindActionCreatorsMap = {}
-// for (let key in ActionCreators.context) {
-//     console.log('-- 22 key', key)
-//     bindActionCreatorsMap[key] = ActionCreators.context[key]
-// }
-// export default (ComposeComponent) => (
-//     connect(
-//         // @ts-ignore
-//         ({ context }) => ({ context }),
-//         (dispatcher) => {
-//             const actionCreators = bindActionCreators({
-//                 doActionOne: ActionCreators.context.doActionOne,
-//                 doReadFeed: ActionCreators.context.doReadFeed,
-//                 doOpenTab: ActionCreators.context.doOpenTab
-//             }, dispatcher);
-//
-//             // attach store.dispatch to `props`, so it can be passed for routing --> dispatch(push('path'))
-//             (actionCreators as any).dispatch = dispatcher;
-//             return actionCreators
-//         }
-//     )(ComposeComponent)
-// )

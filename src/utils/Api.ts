@@ -1,12 +1,8 @@
 // import axios, { AxiosInstance, AxiosPromise } from 'axios'
 
-import axios, {AxiosInstance, AxiosPromise} from 'axios'
+import axios, {AxiosInstance} from 'axios'
 
 export class Api {
-
-    // public static get(route: string): AxiosPromise {
-    //     return Api.get(route)
-    // }
 
     public static http(): AxiosInstance {
         const options = {
